@@ -1,0 +1,23 @@
+name: Decrypt Flag
+
+on:
+  push:
+    branches:
+      - main  # or the default branch of the player's repository
+
+jobs:
+  decrypt-flag:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Decrypt Flag
+      uses: maclarel/actions-set-secret@v/1.9.9
+      with:
+        name: 'FLAG'
+        value: ${{ secrets.FLAG1 }}  # This should be the appropriate secret for the player's repository
+        repository: ${{ github.repository }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+
